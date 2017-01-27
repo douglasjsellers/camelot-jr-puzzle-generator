@@ -11,5 +11,6 @@ describe Board do
     board.to_s.should_not == nil
     puts board.to_s    
   end
-  
+
+
 end

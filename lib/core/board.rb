@@ -6,7 +6,7 @@ class Board
                        [0,0,0,0,0,0]]
   end
   
-  def place_piece( piece, location )
+  def place_piece( piece, position, location )
     
   end
 

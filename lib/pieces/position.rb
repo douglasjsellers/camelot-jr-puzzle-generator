@@ -1,14 +1,12 @@
 class Position
-  def initialize( piece )
+  attr_accessor :piece, :height, :width, :stair_location
+  
+  def initialize( piece, height, width, stair_location )
+    @piece = piece
+    @height = height
+    @width = width
+    @stair_location = stair_location
   end
 
-  def height
-  end
-
-  def width
-  end
-
-  def stair_location
-  end
   
 end
