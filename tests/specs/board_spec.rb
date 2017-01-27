@@ -9,6 +9,7 @@ describe Board do
   it "should nicely draw an empty board" do
     board = Board.new
     board.to_s.should_not == nil
+    board.to_s.should == "000000\n000000\n000000\n000000\n"
   end
 
   it "should correctly place a vertical place a red piece" do
@@ -34,7 +35,7 @@ describe Board do
     board.has_piece_at?( 0, 1 ).should == true
   end
   
-  
+
 
 
 end
