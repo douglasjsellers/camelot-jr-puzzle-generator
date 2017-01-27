@@ -1,6 +1,7 @@
 class RedPiece < Piece
-  def positions
-    [ Position.new( self, 2, 1, nil ) ]
+  def initialize
+    super
+    add_vertical_position( [ 1 , 1 ] )
   end
 
   def size

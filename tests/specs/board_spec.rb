@@ -35,7 +35,17 @@ describe Board do
     board.has_piece_at?( 0, 1 ).should == true
   end
   
+  it "should nicely draw a board with vertical piece" do
+    board = Board.new
+    red_piece = RedPiece.new
+    board.place_piece( red_piece, red_piece.positions.first, 0, 0 ).should == true
+    board.to_s.should == "000000\n000000\n100000\n100000\n"
+  end
 
+  it "should nicely draw a vertical piece with a stair on the top" do
+  end
+  
+  
 
 
 end

@@ -1,11 +1,16 @@
 class Position
-  attr_accessor :piece, :height, :width, :stair_location
+  attr_accessor :piece, :height, :width, :layout
   
-  def initialize( piece, height, width, stair_location )
+  def initialize( piece, is_vertical, layout )
     @piece = piece
-    @height = height
-    @width = width
-    @stair_location = stair_location
+    if( is_vertical )
+      @height = piece.size
+      @width = 1
+    else
+      @width = piece.size
+      @height = 1
+    end
+    @layout = layout
   end
 
   
