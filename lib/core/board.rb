@@ -36,12 +36,22 @@ class Board
   end
   
   private
+  def can_place_vertical_piece?( piece, x, y )
+    to_return = true
+    (0..(piece.size - 1 ) ).each { |adder| to_return = false if( @raw_board_array[y + adder ][x] != 0 ) }
+    return to_return
+  end
+  
   def place_vertical_piece( piece, x, y )
-    (0..(piece.size - 1 ) ).each do |adder|
-       @raw_board_array[y + adder ][x] = 1
+    if( can_place_vertical_piece?( piece, x, y ) )
+      (0..(piece.size - 1 ) ).each do |adder|
+        @raw_board_array[y + adder ][x] = 1
+      end
+      @pieces << piece
+      return true
+    else
+      return false
     end
-    @pieces << piece
-    return true
   end
 
   def place_horizontal_piece( piece, x, y )
