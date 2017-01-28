@@ -8,14 +8,14 @@ class Board
   end
 
   def has_piece_at?( x, y )
-    @raw_board_array[y][x] == 1
+    @raw_board_array[y][x] != 0
   end
   
   def place_piece( piece, position, x, y )
     if( position.height > position.width )
       place_vertical_piece( piece, position, x, y )
     else
-      place_horizontal_piece( piece, x, y )
+      place_horizontal_piece( piece, position, x, y )
     end
   end
 
@@ -54,7 +54,12 @@ class Board
     end
   end
 
-  def place_horizontal_piece( piece, x, y )
+  def place_horizontal_piece( piece, position, x, y )
+    (0..(piece.size - 1 ) ).each do |adder|
+      @raw_board_array[y][x + adder] = position.layout[adder]
+    end
+    @pieces << piece
+    return true
   end
   
   
