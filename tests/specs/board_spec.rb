@@ -53,13 +53,27 @@ describe Board do
   it "should be able to add a horizontal piece" do
     board = Board.new
     blue_piece = BluePiece.new
-    board.place_piece( blue_piece, Position.new( blue_piece, false, [1, '/'] ), 0, 0  )
+    board.place_piece( blue_piece, Position.new( blue_piece, false, [1, '/'] ), 0, 0  ).should == true
     board.has_piece_at?( 0, 0 ).should == true
     board.has_piece_at?( 1, 0 ).should == true
     
     board.to_s.should == "000000\n000000\n000000\n1\/0000\n"
     
   end
+
+  it "should not be able to double place a horizontal piece" do
+    board = Board.new
+    blue_piece = BluePiece.new
+    board.place_piece( blue_piece, Position.new( blue_piece, false, [1, '/'] ), 0, 0  ).should == true
+    board.place_piece( blue_piece, Position.new( blue_piece, false, [1, '/'] ), 0, 0  ).should == false
+    
+    board.has_piece_at?( 0, 0 ).should == true
+    board.has_piece_at?( 1, 0 ).should == true
+    
+    board.to_s.should == "000000\n000000\n000000\n1\/0000\n"
+    
+  end
+  
   
   
   
