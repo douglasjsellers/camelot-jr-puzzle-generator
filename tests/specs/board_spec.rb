@@ -71,8 +71,21 @@ describe Board do
     board.has_piece_at?( 1, 0 ).should == true
     
     board.to_s.should == "000000\n000000\n000000\n1\/0000\n"
+  end
+
+  it "should not be able to overlay a horizontal piece on a vertical piece" do
+    board = Board.new
+    red_piece = RedPiece.new
+    board.place_piece( red_piece, red_piece.positions.first, 0, 0 ).should == true
+    
+    blue_piece = BluePiece.new
+    board.place_piece( blue_piece, Position.new( blue_piece, false, [1, '/'] ), 0, 0  ).should == false
+
+    board.has_piece_at?( 0, 0 ).should == true
+    board.has_piece_at?( 0, 1 ).should == true
     
   end
+  
   
   
   
