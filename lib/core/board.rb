@@ -45,7 +45,7 @@ class Board
   def place_vertical_piece( piece, position, x, y )
     if( can_place_vertical_piece?( piece, x, y ) )
       (0..(piece.size - 1 ) ).each do |adder|
-        @raw_board_array[y + adder ][x] = position.layout.reverse[adder]
+        @raw_board_array[y + adder ][x] = position.layout[adder]
       end
       @pieces << piece
       return true
