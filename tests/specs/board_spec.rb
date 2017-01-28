@@ -43,6 +43,11 @@ describe Board do
   end
 
   it "should nicely draw a vertical piece with a stair on the top" do
+    board = Board.new
+    blue_piece = BluePiece.new
+    board.place_piece( blue_piece, Position.new( blue_piece, true, ['/', 1] ), 0, 0  )
+    board.to_s.should == "000000\n000000\n\/00000\n100000\n"
+    
   end
   
   

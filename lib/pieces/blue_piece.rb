@@ -14,4 +14,4 @@ class BluePiece < Piece
   def has_stairs?
     true
   end
-  
+end  
