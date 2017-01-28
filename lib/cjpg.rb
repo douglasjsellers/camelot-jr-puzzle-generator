@@ -7,3 +7,7 @@ require 'pieces/placed_piece'
 require 'pieces/position'
 require 'pieces/red_piece'
 require 'pieces/blue_piece'
+require 'pieces/orange_piece'
+require 'pieces/purple_piece'
+require 'pieces/green_piece'
+
