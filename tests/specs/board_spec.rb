@@ -132,7 +132,9 @@ describe Board do
   end
 
   it "should not allow pieces to be extended off of either end" do
-    
+    board = Board.new
+    green_piece = GreenPiece.new
+    board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['\\', 0, 5] ), 0, 1  ).should == false
   end
   
 end
