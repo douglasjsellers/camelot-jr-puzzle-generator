@@ -120,6 +120,13 @@ describe Board do
   end
 
   it "should not be possible to place the stairs down" do
+    board = Board.new
+    blue_piece = BluePiece.new
+    board.place_piece( blue_piece, Position.new( blue_piece, true, ['\\', 1] ), 0, 0  ).should == false
+    
+    board.has_piece_at?( 0, 0 ).should == false
+    board.has_piece_at?( 0, 1 ).should == false
+    
   end
 
   it "should allow pieces to be extended off of either end" do

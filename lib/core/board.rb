@@ -70,7 +70,11 @@ class Board
   # vertical is the easy case, we know that the width will always be 1 and there has to be a solid
   # brick below it
   def confirm_vertical_piece_is_stable( piece, position, x, y )
-    return piece_below_location?( x, y )
+    if( position.layout[0] != 1 )
+      return false
+    else
+      return piece_below_location?( x, y )
+    end
   end
   
   def find_offset_closest_to_stair( piece, position )
@@ -82,8 +86,8 @@ class Board
       return nil
     end
   end
-  
-  def place_vertical_piece( piece, position, x, y )
+   
+ def place_vertical_piece( piece, position, x, y )
     if( can_place_vertical_piece?( piece, position, x, y ) )
       (0..(piece.size - 1 ) ).each do |adder|
         @raw_board_array[y + adder ][x] = position.layout[adder]
