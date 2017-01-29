@@ -85,11 +85,24 @@ describe Board do
     board.has_piece_at?( 0, 1 ).should == true
     
   end
-  
 
-  
-  
-  
+  it "should not be able to place a piece with nothing below it" do
+    board = Board.new
+    blue_piece = BluePiece.new
+    board.place_piece( blue_piece, Position.new( blue_piece, false, [1, '/'] ), 0, 1  ).should == false
+    
+    board.has_piece_at?( 0, 1 ).should == false
+    board.has_piece_at?( 1, 1 ).should == false
+    
+  end
 
+  it "should not be able to place a three length piece with nothing below it" do
+  end
 
+  it "should not be possible to place the stairs down" do
+  end
+
+  it "should allow pieces to be extended off of either end" do
+  end
+  
 end
