@@ -99,7 +99,7 @@ describe Board do
   it "should not be able to place a piece with nothing below it with stairs on left" do
     board = Board.new
     blue_piece = BluePiece.new
-    board.place_piece( blue_piece, Position.new( blue_piece, false, ['\\', 1, 1] ), 0, 1  ).should == false
+    board.place_piece( blue_piece, Position.new( blue_piece, false, ['\\', 1] ), 0, 1  ).should == false
     
     board.has_piece_at?( 0, 1 ).should == false
     board.has_piece_at?( 1, 1 ).should == false
@@ -107,6 +107,16 @@ describe Board do
   end
   
   it "should not be able to place a three length piece with nothing below it" do
+    board = Board.new
+    green_piece = GreenPiece.new
+    board.place_piece( green_piece, Position.new( green_piece, false, ['\\', 1, 1] ), 0, 1  ).should == false
+
+    board.has_piece_at?( 0, 1 ).should == false
+    board.has_piece_at?( 1, 1 ).should == false
+    board.has_piece_at?( 2, 1 ).should == false
+
+    board.place_piece( green_piece, Position.new( green_piece, false, [1, 1, '/'] ), 0, 1  ).should == false
+    
   end
 
   it "should not be possible to place the stairs down" do
