@@ -19,9 +19,6 @@ class Board
     end
   end
 
-  def valid_board?
-  end
-
   def to_s
     string_to_return = ""
     @raw_board_array.reverse.each do |row|
