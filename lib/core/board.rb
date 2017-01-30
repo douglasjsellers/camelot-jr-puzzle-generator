@@ -52,7 +52,7 @@ class Board
   end
   
   def confirm_horizontal_piece_is_balance( piece, position, x, y )
-    return confirm_vertical_piece_is_stable( piece, x, y ) if( piece.size == 1 )
+    return confirm_vertical_piece_is_stable( piece, position, x, y ) if( piece.size == 1 )
 
     # find the starting and ending position of non-stairs
     offset = find_offset_closest_to_stair( piece, position )
@@ -66,8 +66,12 @@ class Board
 
   # vertical is the easy case, we know that the width will always be 1 and there has to be a solid
   # brick below it
+  def is_solid_piece_at_bottom?( piece, position )
+    return position.layout[0] == 1 || position.layout[0] == 'K' || position.layout[0] == 'P'
+  end
+  
   def confirm_vertical_piece_is_stable( piece, position, x, y )
-    if( position.layout[0] != 1 )
+    if( !is_solid_piece_at_bottom?( piece, position ) )
       return false
     else
       return piece_below_location?( x, y )

@@ -136,5 +136,21 @@ describe Board do
     green_piece = GreenPiece.new
     board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['\\', 1, 1] ), 5, 0  ).should == false
   end
+
+  it "should be able to place a princess" do
+    board = Board.new
+    princess = Princess.new
+    board.place_piece( princess, princess.positions.first, 0, 0 ).should == true
+    board.to_s.should == "000000\n000000\n000000\nP00000\n"
+    
+  end
+
+  it "should be able to place a knight" do
+    board = Board.new
+    knight = Knight.new
+    board.place_piece( knight, knight.positions.first, 0, 0 ).should == true
+    board.to_s.should == "000000\n000000\n000000\nK00000\n"
+  
+  end
   
 end

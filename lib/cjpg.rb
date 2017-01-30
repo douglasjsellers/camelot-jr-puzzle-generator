@@ -11,4 +11,6 @@ require 'pieces/blue_piece'
 require 'pieces/orange_piece'
 require 'pieces/purple_piece'
 require 'pieces/green_piece'
+require 'pieces/knight_piece'
+require 'pieces/princess_piece'
 
