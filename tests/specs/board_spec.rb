@@ -152,5 +152,84 @@ describe Board do
     board.to_s.should == "000000\n000000\n000000\nK00000\n"
   
   end
+
+  it "should be able to find the princess" do
+    board = Board.new
+    red_piece = RedPiece.new
+    princess = Princess.new
+    board.place_piece( red_piece, red_piece.positions.first, 0, 0 ).should == true
+    board.place_piece( princess, princess.positions.first, 0, 2 ).should == true
+
+    x, y = board.princess_location
+    x.should == 0
+    y.should == 2
+  end
+
+  it "should be able to find the knight" do
+    board = Board.new
+    red_piece = RedPiece.new
+    knight = Knight.new
+    board.place_piece( red_piece, red_piece.positions.first, 5, 0 ).should == true
+    board.place_piece( knight, knight.positions.first, 5, 2 ).should == true
+
+    x, y = board.knight_location
+    x.should == 5
+    y.should == 2
+  end
+
+  it "should be able to find both the princess ande the knight" do
+    board = Board.new
+    red_piece = RedPiece.new
+    knight = Knight.new
+    board.place_piece( red_piece, red_piece.positions.first, 5, 0 ).should == true
+    board.place_piece( knight, knight.positions.first, 5, 2 ).should == true
+    
+    princess = Princess.new
+    board.place_piece( red_piece, red_piece.positions.first, 0, 0 ).should == true
+    board.place_piece( princess, princess.positions.first, 0, 2 ).should == true
+
+    x, y = board.knight_location
+    x.should == 5
+    y.should == 2
+
+    x, y = board.princess_location
+    x.should == 0
+    y.should == 2
+    
+  end
+
+  it "should be able to determine if there is a knight" do
+    board = Board.new
+    red_piece = RedPiece.new
+    
+    board.has_knight?.should == false
+    knight = Knight.new
+    princess = Princess.new
+    board.place_piece( princess, princess.positions.first, 0, 0 ).should == true
+    board.has_knight?.should == false
+    
+    board.place_piece( red_piece, red_piece.positions.first, 5, 0 ).should == true
+    board.place_piece( knight, knight.positions.first, 5, 2 ).should == true
+
+    board.has_knight?.should == true
+  end
+
+  it "should be able to deterime if there is a princess" do
+    board = Board.new
+    red_piece = RedPiece.new
+    
+    board.has_princess?.should == false
+    knight = Knight.new
+    princess = Princess.new
+    
+    board.place_piece( red_piece, red_piece.positions.first, 5, 0 ).should == true
+    board.place_piece( knight, knight.positions.first, 5, 2 ).should == true
+    board.has_princess?.should == false
+    
+    board.place_piece( princess, princess.positions.first, 0, 0 ).should == true
+    board.has_princess?.should == true
+    
+  end
+  
   
 end

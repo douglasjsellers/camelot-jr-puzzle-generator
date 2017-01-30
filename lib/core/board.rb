@@ -7,6 +7,17 @@ class Board
     @pieces = []
   end
 
+  def has_princess?
+    x, y = princess_location
+    return !x.nil? && !y.nil?
+  end
+
+  def has_knight?
+    x, y = knight_location
+    return !x.nil? && !y.nil?
+    
+  end
+  
   def has_piece_at?( x, y )
     @raw_board_array[y][x] != 0
   end
@@ -17,6 +28,14 @@ class Board
     else
       place_horizontal_piece( piece, position, x, y )
     end
+  end
+
+  def princess_location
+    location_of_item( 'P' )
+  end
+
+  def knight_location
+    location_of_item( 'K' )    
   end
 
   def to_s
@@ -33,6 +52,23 @@ class Board
   end
   
   private
+
+  def location_of_item( item )
+    x = nil
+    y = nil
+    @raw_board_array.each_with_index do |row, row_number|
+      row.each_with_index do |column, column_number|
+        if( column == item )
+          x = column_number
+          y = row_number
+        end
+      end
+    end
+
+    return x,y
+    
+  end
+  
   def can_place_horizontal_piece?( piece, position, x, y )
     to_return = true
     (0..(piece.size - 1 ) ).each { |adder| to_return = false if( @raw_board_array[y][x + adder ] != 0 ) }
