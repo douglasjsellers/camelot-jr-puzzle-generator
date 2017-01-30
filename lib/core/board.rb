@@ -1,4 +1,5 @@
 class Board
+ 
   def initialize
     @raw_board_array = [[0,0,0,0,0,0],
                        [0,0,0,0,0,0],
@@ -7,6 +8,10 @@ class Board
     @pieces = []
   end
 
+  def clone
+    Marshal::load(Marshal.dump(self))    
+  end
+  
   def has_princess?
     x, y = princess_location
     return !x.nil? && !y.nil?

@@ -231,5 +231,24 @@ describe Board do
     
   end
   
+
+  it "should be possible to make a distinct clone" do
+    board = Board.new
+    red_piece = RedPiece.new
+    
+    expect( board.has_princess? ).to eq(false)
+    knight = Knight.new
+    princess = Princess.new
+    
+    expect( board.place_piece( red_piece, red_piece.positions.first, 5, 0 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
+
+    cloned_board = board.clone
+
+    expect( cloned_board.to_s ).to eq( board.to_s )
+
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+    expect( cloned_board.to_s ).not_to eq( board.to_s )
+  end
   
 end
