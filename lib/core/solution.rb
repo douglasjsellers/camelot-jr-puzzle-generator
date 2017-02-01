@@ -17,28 +17,21 @@ class Solution
     else
       # Try to advance the princess forward a step
       new_board = current_board.clone
+      pieces_outer = current_pieces.clone
 
-      if( new_board.can_move_princess_right? )
-        new_board.move_princess_right
-        return compute_solution( new_board )
-      else
-        # Start iterating through the existing position pieces and trying to place them
-        # See if one of them makes it so that the princess can move right
-        # If so, move forward, otherwise try again
-        new_board = place_new_piece_to_allow_princess_to_move_forward( new_board, current_pieces )
-        if( new_board.can_move_princess_right? )
-          new_board.move_princess_right?
-          return compute_solution( new_board )
-        else
-          return nil
+
+      pieces_outer.each_with_index do |piece, index|
+        new_board = current_board.clone
+        new_board.add(piece)
+        pieces_inner = current_pieces.clone - [piece]
+        pieces_inner.each do |current_piece|
+          
         end
       end
     end
   end
 
-  def place_new_piece_to_allow_princess_to_move_forward( board, current_pieces )
-  end
-  
+
   
 end
 
