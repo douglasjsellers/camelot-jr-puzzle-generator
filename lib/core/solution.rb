@@ -3,33 +3,36 @@ class Solution
     @board = board
     @playable_pieces = playable_pieces
 
-    compute_solution
+    @solution = compute_solution( board, playable_pieces )
   end
 
+  def has_solution?
+    !@solution.nil?
+  end
+  
   private
   def compute_solution( current_board, current_pieces )
-
-    princess_x, princess_y = current_board.princess_location
-    knight_x, knight_y = current_board.knight_location
-
-    if( current_board.princess_next_to_knight? )
+    if( current_board.princess_can_reach_knight? )
       return current_board
     else
-      # Try to advance the princess forward a step
-      new_board = current_board.clone
-      pieces_outer = current_pieces.clone
+      return add_piece_and_look_for_solution( current_board, current_pieces.first )
+    end
+  end
 
-
-      pieces_outer.each_with_index do |piece, index|
-        new_board = current_board.clone
-        new_board.add(piece)
-        pieces_inner = current_pieces.clone - [piece]
-        pieces_inner.each do |current_piece|
-          
+  def add_piece_and_look_for_solution( board, piece )
+    board.locations_between_princess_and_knight.each do |location|
+      x, y = *location
+      
+      piece.positions.each do |position|
+        current_board = board.clone
+        if( current_board.place_piece( piece, position, x, y ) )
+          return current_board if current_board.princess_can_reach_knight?
         end
       end
     end
+    return nil
   end
+  
 
 
   

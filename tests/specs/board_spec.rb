@@ -250,5 +250,13 @@ describe Board do
     expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
     expect( cloned_board.to_s ).not_to eq( board.to_s )
   end
+
+  it "should be able to find all the locations between the princess and the knight" do
+  end
+
+
+  it "should be able to detect if the princess can reach the the knight" do
+  end
+  
   
 end

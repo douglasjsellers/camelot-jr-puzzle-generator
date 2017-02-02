@@ -26,6 +26,14 @@ class Board
   def has_piece_at?( x, y )
     @raw_board_array[y][x] != 0
   end
+
+  def knight_location
+    location_of_item( 'K' )    
+  end
+  
+  def locations_between_princess_and_knight
+    []
+  end
   
   def place_piece( piece, position, x, y )
     if( position.height > position.width )
@@ -35,13 +43,14 @@ class Board
     end
   end
 
+  def princess_can_reach_knight?
+    false
+  end
+  
   def princess_location
     location_of_item( 'P' )
   end
 
-  def knight_location
-    location_of_item( 'K' )    
-  end
 
   def to_s
     string_to_return = ""
