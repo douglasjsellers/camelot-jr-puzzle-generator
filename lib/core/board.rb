@@ -29,8 +29,8 @@ class Board
 
 
   def height_of_column( x )
-    ((@raw_board_array.size - 1)..0).each do |y|
-      return y+1 if @raw_board_array[y][x] != 0
+    (@raw_board_array.size - 1).downto(0) do |y|
+      return y+1 if has_piece_at?( x, y )
     end
 
     return 0
