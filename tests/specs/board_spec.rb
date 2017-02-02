@@ -250,13 +250,39 @@ describe Board do
     expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
     expect( cloned_board.to_s ).not_to eq( board.to_s )
   end
+  
+  it "should be able to detect if the princess can reach the the knight with no pieces in between" do
+    board = Board.new
 
-  it "should be able to find all the locations between the princess and the knight" do
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( knight, knight.positions.first, 5, 0 ) ).to eq( true )
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+
+    expect( board.princess_can_reach_knight? ).to eq( true )
     
   end
 
+  it "should be able to detect that the princess can't reach the knight" do
+    board = Board.new
 
-  it "should be able to detect if the princess can reach the the knight with no pieces in between" do
+    knight = Knight.new
+    princess = Princess.new
+    red_piece = RedPiece.new
+
+    expect( board.place_piece( knight, knight.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( red_piece, red_piece.positions.first, 3, 0 ) ).to eq( true )
+
+    expect( board.princess_can_reach_knight? ).to eq( false )
+  end
+  
+  it "should be able to detect that the princess can reach the knight if there are stairs in between" do
+  end
+  
+
+  it "should be able to find all the locations between the princess and the knight with no pieces in between" do
     board = Board.new
 
     knight = Knight.new
