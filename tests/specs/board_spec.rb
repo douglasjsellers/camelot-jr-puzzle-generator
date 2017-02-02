@@ -252,10 +252,21 @@ describe Board do
   end
 
   it "should be able to find all the locations between the princess and the knight" do
+    
   end
 
 
-  it "should be able to detect if the princess can reach the the knight" do
+  it "should be able to detect if the princess can reach the the knight with no pieces in between" do
+    board = Board.new
+
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( knight, knight.positions.first, 5, 0 ) ).to eq( true )
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+
+    correct_solution = [[1,0],[2,0],[3,0],[4,0]]
+    expect( board.locations_between_princess_and_knight ).to eq( correct_solution )
   end
   
   

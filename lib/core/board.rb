@@ -27,12 +27,27 @@ class Board
     @raw_board_array[y][x] != 0
   end
 
+
+  def height_of_column( x )
+    ((@raw_board_array.size - 1)..0).each do |y|
+      return y+1 if @raw_board_array[y][x] != 0
+    end
+
+    return 0
+  end
+  
   def knight_location
     location_of_item( 'K' )    
   end
   
   def locations_between_princess_and_knight
-    []
+    to_return = []
+    princess_x, princess_y = self.princess_location
+    knight_x, knight_y = self.knight_location
+    ((princess_x + 1)..(knight_x - 1 )).each do |x_location|
+      to_return << [x_location, self.height_of_column( x_location )]
+    end
+    to_return
   end
   
   def place_piece( piece, position, x, y )
