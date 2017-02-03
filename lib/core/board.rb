@@ -59,7 +59,22 @@ class Board
   end
 
   def princess_can_reach_knight?
-    false
+    princess_x, princess_y = self.princess_location
+    knight_x, knight_y = self.knight_location
+    ((princess_x + 1)..(knight_x - 1 )).each do |x_location|
+      top_of_column = self.height_of_column( x_location )
+      top_of_column_character = @raw_board_array[self.height_of_column( x_location )][x_location]
+      if( top_of_column == princess_y )
+      elsif ((top_of_column == (princess_y + 1)) && (top_of_column_character == '/' ))
+        princess_y = princess_y + 1
+      elsif ((top_of_column == (princess_y - 1)) && (top_of_column_character == '\\' ))
+        princess_y = princess_y - 1
+      else
+        return false
+      end
+    end
+
+    return ( princess_y == knight_y )
   end
   
   def princess_location
