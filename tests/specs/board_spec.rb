@@ -277,8 +277,26 @@ describe Board do
 
     expect( board.princess_can_reach_knight? ).to eq( false )
   end
+
+  it "should bo able to handle level changes and detect if the princess can reach the knight" do
+    board = Board.new
+
+    knight = Knight.new
+    princess = Princess.new
+    blue_piece = BluePiece.new
+    orange_piece = OrangePiece.new
+
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( blue_piece, Position.new( blue_piece, HORIZONTAL, ['/',1] ), 1, 0  ) ).to eq( true )
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 3, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 4, 1 ) ).to eq( true )
+    
+    expect( board.princess_can_reach_knight? ).to eq( true )
+  end
   
   it "should be able to detect that the princess can reach the knight if there are stairs in between" do
+    
   end
   
 
