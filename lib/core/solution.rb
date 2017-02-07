@@ -9,6 +9,10 @@ class Solution
   def has_solution?
     !@solution.nil?
   end
+
+  def final_position_board
+    @solution
+  end
   
   private
   def compute_solution( current_board, current_pieces )
