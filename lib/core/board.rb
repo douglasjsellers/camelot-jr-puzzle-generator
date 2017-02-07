@@ -1,5 +1,4 @@
 class Board
- 
   def initialize
     @raw_board_array = [[0,0,0,0,0,0],
                        [0,0,0,0,0,0],
@@ -66,7 +65,7 @@ class Board
       top_of_column_character = @raw_board_array[self.height_of_column( x_location ) - 1][x_location]
       if ((top_of_column == (princess_y + 1)) && (top_of_column_character == '/' ))
         princess_y = princess_y + 1
-      elsif ((top_of_column == (princess_y - 1)) && (top_of_column_character == '\\' ))
+      elsif ((top_of_column == (princess_y)) && (top_of_column_character == '\\' ))
         princess_y = princess_y - 1
       elsif( top_of_column == princess_y  )        
       else
@@ -80,7 +79,6 @@ class Board
   def princess_location
     location_of_item( 'P' )
   end
-
 
   def to_s
     string_to_return = ""
