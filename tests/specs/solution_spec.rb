@@ -1,6 +1,8 @@
 require_relative '../spec_helper'
 
 describe Solution do
+  @disabled = false
+  
   it "should be able to find a solution to the simplest problem" do
     board = Board.new
     orange_piece = OrangePiece.new
@@ -16,7 +18,7 @@ describe Solution do
     expect( solution.has_solution? ).to eq( true )
     final_board = solution.final_position_board
     expect( final_board ).not_to eq( nil )
-  end
+  end unless @disabled
 
   it "should be able to solve a find a two piece solution" do
     board = Board.new
@@ -39,7 +41,7 @@ describe Solution do
     expect( solution.has_solution? ).to eq( true )
     final_board = solution.final_position_board
     expect( final_board ).not_to eq( nil )
-  end
+  end unless @disabled
 
   it "should be able to solve a three piece solution" do
     board = Board.new
@@ -66,7 +68,7 @@ describe Solution do
     expect( solution.has_solution? ).to eq( true )
     final_board = solution.final_position_board
     expect( final_board ).not_to eq( nil )
-  end
+  end unless @disabled
   
   
 end
