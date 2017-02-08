@@ -121,11 +121,17 @@ class Board
 
   def can_place_vertical_piece?( piece, position, x, y )
     to_return = true
-    # first be sure that there is nothing that it is going to over write
-    (0..(piece.size - 1 ) ).each { |adder| to_return = false if( @raw_board_array[y + adder ][x] != 0 ) }
+    if( piece.size + y <= @raw_board_array.length )
+      # first be sure that there is nothing that it is going to over write
 
-    # now make sure it is balanced
-    to_return = confirm_vertical_piece_is_stable( piece, position, x, y ) if to_return
+      (0..(piece.size - 1 ) ).each { |adder|  to_return = false if( @raw_board_array[y + adder ][x] != 0 ) }
+
+      # now make sure it is balanced
+      to_return = confirm_vertical_piece_is_stable( piece, position, x, y ) if to_return
+    else
+      to_return = false
+    end
+    
     return to_return
   end
   

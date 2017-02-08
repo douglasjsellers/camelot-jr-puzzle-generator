@@ -394,9 +394,9 @@ ed off of either   end unless @disabled
     red_piece_two = RedPiece.new
     red_piece_three = RedPiece.new
     
-    expect( board.place_piece( red_piece_one, Position.new( red_piece_one, VERTICAL, red_piece_one.positions.first ), 0, 0  ) ).to eq( true )
-    expect( board.place_piece( red_piece_two, Position.new( red_piece_two, VERTICAL, red_piece_two.positions.first ), 0, 2  ) ).to eq( true )
-    expect( board.place_piece( red_piece_three, Position.new( red_piece_three, VERTICAL, red_piece_three.positions.first ), 0, 4  ) ).to eq( false )
+    expect( board.place_piece( red_piece_one, red_piece_one.positions.first, 0, 0  ) ).to eq( true )
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first , 0, 2  ) ).to eq( true )
+    expect( board.place_piece( red_piece_three, red_piece_three.positions.first, 0, 4  ) ).to eq( false )
   end unless @disabled
 
   
