@@ -36,7 +36,7 @@ class Solution
           if( remaining_pieces.empty? )
             return current_board if current_board.princess_can_reach_knight?
           else
-            return add_piece_and_look_for_solution( board, remaining_pieces.first, remaining_pieces - [remaining_pieces.first] )
+            return add_piece_and_look_for_solution( current_board, remaining_pieces.first, remaining_pieces - [remaining_pieces.first] )
           end
         end
       end
