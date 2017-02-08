@@ -127,9 +127,14 @@ class Board
   
   def can_place_horizontal_piece?( piece, position, x, y )
     to_return = true
-    (0..(piece.size - 1 ) ).each { |adder| to_return = false if( @raw_board_array[y][x + adder ] != 0 ) }
+    if( piece.size + y <= @raw_board_array.length )
+      (0..(piece.size - 1 ) ).each { |adder| to_return = false if( @raw_board_array[y][x + adder ] != 0 ) }
 
-    to_return = confirm_horizontal_piece_is_balance( piece, position, x, y ) if to_return
+      to_return = confirm_horizontal_piece_is_balance( piece, position, x, y ) if to_return
+    else
+      to_return = false
+    end
+    
     return to_return
   end
 

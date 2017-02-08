@@ -399,6 +399,13 @@ ed off of either   end unless @disabled
     expect( board.place_piece( red_piece_three, red_piece_three.positions.first, 0, 4  ) ).to eq( false )
   end unless @disabled
 
+  it "should not be able to place a horizontal piece very very high" do
+    board = Board.new
+
+    blue_piece = BluePiece.new
+    
+    expect( board.place_piece( blue_piece, Position.new( blue_piece, HORIZONTAL, ['/',1] ), 0, 5  ) ).to eq( false )
+  end unless @disabled
   
-  end 
+end 
 
