@@ -19,27 +19,30 @@ class Solution
     if( current_board.princess_can_reach_knight? )
       return current_board
     else
-      return add_piece_and_look_for_solution( current_board, current_pieces.first )
+      current_pieces.each do |current_piece|
+        solution = add_piece_and_look_for_solution( current_board, current_piece, current_pieces - [current_piece] )
+        return solution unless solution.nil?
+      end
     end
   end
 
-  def add_piece_and_look_for_solution( board, piece )
+  def add_piece_and_look_for_solution( board, piece, remaining_pieces )
     board.locations_between_princess_and_knight.each_with_index do |location, index|
       x, y = *location
       
       piece.positions.each do |position|
         current_board = board.clone
-        if( current_board.place_piece( piece, position, x, y ) )
-          return current_board if current_board.princess_can_reach_knight?
+        if( current_board.place_piece( piece, position, x, y )  )
+          if( remaining_pieces.empty? )
+            return current_board if current_board.princess_can_reach_knight?
+          else
+            return add_piece_and_look_for_solution( board, remaining_pieces.first, remaining_pieces - [remaining_pieces.first] )
+          end
         end
       end
     end
     return nil
   end
-  
-
-
-  
 end
 
   
