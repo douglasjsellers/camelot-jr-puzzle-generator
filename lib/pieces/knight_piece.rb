@@ -4,6 +4,10 @@ class Knight < Piece
     add_vertical_position( [ 'K' ] )
   end
 
+  def color
+    :cyan
+  end
+  
   def size
     1
   end

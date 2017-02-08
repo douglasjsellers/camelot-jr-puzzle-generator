@@ -4,6 +4,10 @@ class OrangePiece < Piece
     add_vertical_position( [ 1 ] )
   end
 
+  def color
+    :yellow
+  end
+  
   def size
     1
   end

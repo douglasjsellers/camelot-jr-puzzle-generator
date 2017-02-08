@@ -4,6 +4,10 @@ class PurplePiece < Piece
     add_vertical_position( [ 1 ] )
   end
 
+  def color
+    :magenta
+  end
+  
   def size
     1
   end

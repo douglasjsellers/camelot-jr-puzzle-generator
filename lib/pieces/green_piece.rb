@@ -7,6 +7,10 @@ class GreenPiece < Piece
     add_horizontial_position( [ '/', 1, 1 ] )
   end
 
+  def color
+    :green
+  end
+  
   def size
     3
   end

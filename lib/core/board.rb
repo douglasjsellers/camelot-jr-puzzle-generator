@@ -4,6 +4,11 @@ class Board
                        [0,0,0,0,0,0],
                        [0,0,0,0,0,0],
                        [0,0,0,0,0,0]]
+    
+    @colored_board_array = [["0","0","0","0","0","0"],
+                            ["0","0","0","0","0","0"],
+                            ["0","0","0","0","0","0"],
+                            ["0","0","0","0","0","0"]]
     @pieces = []
   end
 
@@ -80,9 +85,19 @@ class Board
     location_of_item( 'P' )
   end
 
+  def colored_string
+    build_string( @colored_board_array )
+  end
+  
   def to_s
+    build_string( @raw_board_array )
+  end
+  
+  private
+
+  def build_string( data )
     string_to_return = ""
-    @raw_board_array.reverse.each do |row|
+    data.reverse.each do |row|
       row.each do |column|
         string_to_return << column.to_s
       end
@@ -91,10 +106,9 @@ class Board
     end
     
     string_to_return
+    
   end
   
-  private
-
   def location_of_item( item )
     x = nil
     y = nil
@@ -176,6 +190,7 @@ class Board
     if( can_place_vertical_piece?( piece, position, x, y ) )
       (0..(piece.size - 1 ) ).each do |adder|
         @raw_board_array[y + adder ][x] = position.layout[adder]
+        @colored_board_array[y + adder ][x] = position.layout[adder].to_s.colorize( piece.color )
       end
       @pieces << piece
       return true
@@ -188,6 +203,7 @@ class Board
     if( can_place_horizontal_piece?( piece, position, x, y ) )
       (0..(piece.size - 1 ) ).each do |adder|
         @raw_board_array[y][x + adder] = position.layout[adder]
+        @colored_board_array[y][x + adder] = position.layout[adder].to_s.colorize( piece.color )
       end
       @pieces << piece
       return true

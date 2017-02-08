@@ -20,6 +20,10 @@ class Piece
     @positions << Position.new( self, @vertical, layout )
     self
   end
+
+  def color
+    :black
+  end
   
   def positions
     @positions

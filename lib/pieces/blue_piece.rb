@@ -7,6 +7,10 @@ class BluePiece < Piece
     add_horizontial_position( [ '/', 1 ] )
   end
 
+  def color
+    :blue
+  end
+  
   def size
     2
   end
