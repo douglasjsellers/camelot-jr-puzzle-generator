@@ -161,9 +161,9 @@ class Board
     offset = find_offset_closest_to_stair( piece, position )
     # make sure there is something solid under the position closest to the stair
     if( offset == 0 )
-      return piece_below_location?( x, y )
+      return piece_below_location_is_solid?( x, y )
     else
-      return piece_below_location?( x + offset  - 1, y )
+      return piece_below_location_is_solid?( x + offset, y )
     end
   end
 
@@ -177,16 +177,16 @@ class Board
     if( !is_solid_piece_at_bottom?( piece, position ) )
       return false
     else
-      return piece_below_location?( x, y )
+      return piece_below_location_is_solid?( x, y )
     end
   end
   
   def find_offset_closest_to_stair( piece, position )
     if( position.layout[0] != 1 )
-      return 0
+      return 1
     elsif( position.layout[ piece.size - 1 ] != 1 )
-      return piece.size - 1
-    else
+      return piece.size - 2
+    else # no stairs
       return nil
     end
   end
@@ -218,7 +218,7 @@ class Board
     
   end
 
-  def piece_below_location?( x, y )
+  def piece_below_location_is_solid?( x, y )
     if( y > 0 )
       return @raw_board_array[ y - 1][x] == 1
     else

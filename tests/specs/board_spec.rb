@@ -406,6 +406,16 @@ ed off of either   end unless @disabled
     
     expect( board.place_piece( blue_piece, Position.new( blue_piece, HORIZONTAL, ['/',1] ), 0, 5  ) ).to eq( false )
   end unless @disabled
+
+  it "should correctly balance green piece" do
+    board = Board.new
+    orange_piece = OrangePiece.new
+    green_piece = GreenPiece.new
+    
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 2, 1  ) ).to eq( false )
+    expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 1, 1  ) ).to eq( true )
+  end unless @disabled
   
 end 
 
