@@ -24,7 +24,7 @@ class Solution
   end
 
   def add_piece_and_look_for_solution( board, piece )
-    board.locations_between_princess_and_knight.each do |location|
+    board.locations_between_princess_and_knight.each_with_index do |location, index|
       x, y = *location
       
       piece.positions.each do |position|
