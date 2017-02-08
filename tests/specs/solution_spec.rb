@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
 describe Solution do
-  @disabled = false
+  @disabled = true
   
   it "should be able to find a solution to the simplest problem" do
     board = Board.new
@@ -70,4 +70,31 @@ describe Solution do
     expect( final_board ).not_to eq( nil )
   end unless @disabled
   
+  it "should be able to solve a two piece solution (2)" do
+    board = Board.new
+
+    orange_piece = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+    
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 5, 0 ) ).to eq( true )
+    
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 2 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
+
+    puts board.colored_string
+    solution = Solution.new( board, [BluePiece.new, GreenPiece.new ] )
+    expect( solution.has_solution? ).to eq( true )
+    final_board = solution.final_position_board
+    expect( final_board ).not_to eq( nil )
+
+    puts final_board.colored_string
+  end 
+
 end

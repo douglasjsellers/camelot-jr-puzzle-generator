@@ -416,6 +416,29 @@ ed off of either   end unless @disabled
     expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 2, 1  ) ).to eq( false )
     expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 1, 1  ) ).to eq( true )
   end unless @disabled
+
+  it "should correctly detect that princess can reach knight in complex situation 1" do
+    board = Board.new
+
+    orange_piece = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    knight = Knight.new
+    princess = Princess.new
+
+    blue_piece = BluePiece.new
+    green_piece = GreenPiece.new
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 5, 0 ) ).to eq( true )
+    expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, [ 1, 1, '\\'] ), 1, 1  ) ).to eq( true )
+    expect( board.place_piece( blue_piece, Position.new( blue_piece, VERTICAL, [ 1, '/'] ), 4, 0  ) ).to eq( true )
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 2 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
+
+    expect( board.princess_can_reach_knight? ).to eq( true )
+  end unless @disabled
   
 end 
 
