@@ -70,5 +70,4 @@ describe Solution do
     expect( final_board ).not_to eq( nil )
   end unless @disabled
   
-  
 end
