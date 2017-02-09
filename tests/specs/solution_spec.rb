@@ -90,8 +90,6 @@ describe Solution do
     expect( solution.has_solution? ).to eq( true )
     final_board = solution.final_position_board
     expect( final_board ).not_to eq( nil )
-
-    puts final_board.colored_string
   end 
 
 end
