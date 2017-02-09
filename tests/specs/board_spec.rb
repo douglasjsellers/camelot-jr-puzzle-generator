@@ -347,7 +347,7 @@ ed off of either   end unless @disabled
     expect( board.place_piece( knight, knight.positions.first, 5, 0 ) ).to eq( true )
     expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
 
-    correct_solution = [[1,0],[2,0],[3,0],[4,0]]
+    correct_solution = [[1, 0], [1, 1], [2, 0], [3, 0], [4, 0], [4, 1]]
     expect( board.locations_between_princess_and_knight ).to eq( correct_solution )
   end unless @disabled
 
@@ -363,7 +363,7 @@ ed off of either   end unless @disabled
     expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
     expect( board.place_piece( red_piece, red_piece.positions.first, 3, 0 ) ).to eq( true )
 
-    correct_solution = [[1,0],[2,0],[3,2]]
+    correct_solution = [[1, 0], [1, 1], [2, 0], [3, 2]]
     expect( board.locations_between_princess_and_knight ).to eq( correct_solution )
   end unless @disabled
 
@@ -438,6 +438,33 @@ ed off of either   end unless @disabled
     expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
 
     expect( board.princess_can_reach_knight? ).to eq( true )
+  end unless @disabled
+
+  it "should be able to detect that a valid spot includes balanceable spots" do
+    board = Board.new
+
+    orange_piece = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+    
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 5, 0 ) ).to eq( true )
+    
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 2 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
+
+    found_location = false
+    board.locations_between_princess_and_knight.each do|position|
+      x,y = *position
+      found_location = true if x == 1 && y == 1
+    end
+
+    expect( found_location ).to eq( true )
   end unless @disabled
   
 end 
