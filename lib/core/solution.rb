@@ -2,7 +2,7 @@ class Solution
 
   
   def initialize( board, playable_pieces )
-    @enable_debug = true
+    @enable_debug = false
     
     @board = board
     @playable_pieces = playable_pieces
@@ -44,9 +44,9 @@ class Solution
         current_board = board.clone
         if( current_board.place_piece( piece, position, x, y )  )
           if( remaining_pieces.empty? )
-            debug "", false
-            debug current_board.colored_string, false
-            debug "", false
+            debug ""
+            debug current_board.colored_string
+            debug ""
             return current_board if current_board.princess_can_reach_knight?
           else
             solution = add_piece_and_look_for_solution( current_board, remaining_pieces.first, remaining_pieces - [remaining_pieces.first] )

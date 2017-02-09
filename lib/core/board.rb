@@ -36,7 +36,6 @@ class Board
     (@raw_board_array.size - 1).downto(0) do |y|
       return y+1 if has_piece_at?( x, y )
     end
-
     return 0
   end
   
@@ -70,10 +69,18 @@ class Board
     ((princess_x + 1)..(knight_x - 1 )).each do |x_location|
       top_of_column = self.height_of_column( x_location )
       top_of_column_character = @raw_board_array[self.height_of_column( x_location ) - 1][x_location]
-      if ((top_of_column == (princess_y + 1)) && (top_of_column_character == '/' ))
-        princess_y = princess_y + 1
-      elsif ((top_of_column == (princess_y)) && (top_of_column_character == '\\' ))
-        princess_y = princess_y - 1
+      if ( top_of_column_character == '/' )
+        if(top_of_column == (princess_y + 1))
+          princess_y = princess_y + 1
+        else
+          return false
+        end
+      elsif( (top_of_column_character == '\\' ) )
+        if(top_of_column == (princess_y) )
+          princess_y = princess_y - 1
+        else
+          return false
+        end
       elsif( top_of_column == princess_y  )        
       else
         return false

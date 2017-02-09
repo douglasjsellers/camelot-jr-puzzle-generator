@@ -83,12 +83,9 @@ describe Solution do
     expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )
     expect( board.place_piece( orange_piece, orange_piece.positions.first, 2, 0 ) ).to eq( true )
     expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 5, 0 ) ).to eq( true )
-    
-    
     expect( board.place_piece( princess, princess.positions.first, 0, 2 ) ).to eq( true )
     expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
 
-    puts board.colored_string
     solution = Solution.new( board, [BluePiece.new, GreenPiece.new ] )
     expect( solution.has_solution? ).to eq( true )
     final_board = solution.final_position_board
