@@ -13,7 +13,7 @@ describe Board do
   it "should nicely draw an empty board" do
     board = Board.new
     board.to_s.should_not == nil
-    board.to_s.should == "000000\n000000\n000000\n000000\n"
+    board.to_s.should == "000000\n000000\n000000\n000000\n000000\n"
   end unless @disabled
 
   it "should correctly place a vertical place a red piece" do
@@ -44,7 +44,7 @@ describe Board do
     board = Board.new
     red_piece = RedPiece.new
     board.place_piece( red_piece, red_piece.positions.first, 0, 0 ).should == true
-    board.to_s.should == "000000\n000000\n100000\n100000\n"
+    board.to_s.should == "000000\n000000\n000000\n100000\n100000\n"
   end unless @disabled
 
 
@@ -52,7 +52,7 @@ describe Board do
     board = Board.new
     blue_piece = BluePiece.new
     board.place_piece( blue_piece, Position.new( blue_piece, VERTICAL, [1, '/'] ), 0, 0  )
-    board.to_s.should == "000000\n000000\n\/00000\n100000\n"
+    board.to_s.should == "000000\n000000\n000000\n\/00000\n100000\n"
     
   end unless @disabled
 
@@ -64,7 +64,7 @@ describe Board do
     board.has_piece_at?( 0, 0 ).should == true
     board.has_piece_at?( 1, 0 ).should == true
     
-    board.to_s.should == "000000\n000000\n000000\n1\/0000\n"
+    board.to_s.should == "000000\n000000\n000000\n000000\n1\/0000\n"
     
   end unless @disabled
 
@@ -78,7 +78,7 @@ describe Board do
     board.has_piece_at?( 0, 0 ).should == true
     board.has_piece_at?( 1, 0 ).should == true
     
-    board.to_s.should == "000000\n000000\n000000\n1\/0000\n"
+    board.to_s.should == "000000\n000000\n000000\n000000\n1\/0000\n"
   end unless @disabled
 
 
@@ -156,7 +156,7 @@ ed off of either   end unless @disabled
     board = Board.new
     princess = Princess.new
     board.place_piece( princess, princess.positions.first, 0, 0 ).should == true
-    board.to_s.should == "000000\n000000\n000000\nP00000\n"
+    board.to_s.should == "000000\n000000\n000000\n000000\nP00000\n"
     
   end unless @disabled
 
@@ -165,7 +165,7 @@ ed off of either   end unless @disabled
     board = Board.new
     knight = Knight.new
     board.place_piece( knight, knight.positions.first, 0, 0 ).should == true
-    board.to_s.should == "000000\n000000\n000000\nK00000\n"
+    board.to_s.should == "000000\n000000\n000000\n000000\nK00000\n"
   
   end unless @disabled
 
