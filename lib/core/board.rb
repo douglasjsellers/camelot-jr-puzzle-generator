@@ -243,7 +243,7 @@ class Board
 
   def piece_below_location_is_solid?( x, y )
     if( y > 0 )
-      return @raw_board_array[ y - 1][x] == 1
+      return @raw_board_array[ y - 1][x] == 1 || @raw_board_array[ y - 1][x] == '-'
     else
       return true
     end
