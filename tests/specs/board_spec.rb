@@ -517,7 +517,7 @@ ed off of either   end unless @disabled
 
     expect( board.princess_can_reach_knight? ).to eq( true )
     
-  end 
+  end unless @disabled
 
   it "should correctly determine that the princess can reach the knight for the solution on puzzle 47" do
 
@@ -550,7 +550,40 @@ ed off of either   end unless @disabled
     expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, VERTICAL, [ 1, '/' ] ), 3, 2  ) ).to eq( true )
 
     expect( board.princess_can_reach_knight? ).to eq( true )
-  end
+  end unless @disabled
+
+  it "should correctly determine that the princess can reach the knight for the solution on puzzle 46" do
+    board = Board.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+
+    purple_piece = PurplePiece.new
+    blue_piece_one = BluePiece.new
+    blue_piece_two = BluePiece.new
+    
+    expect( board.place_piece( red_piece, red_piece.positions.first, 5, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 5, 2 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 0, 0 ) ).to eq( true )
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 1 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 3 ) ).to eq( true )
+
+    expect( board.place_piece( purple_piece, purple_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ '/', 1 ] ), 1, 1 ) ).to eq( true )
+
+    expect( board.place_piece( blue_piece_two, Position.new( blue_piece_two, HORIZONTAL, [ '/', 1 ] ), 3, 2 ) ).to eq( true )
+    
+    expect( board.princess_can_reach_knight? ).to eq( true )
+    
+  end unless @disabled
+  
   
 end 
 
