@@ -51,10 +51,11 @@ class Board
     knight_x, knight_y = self.knight_location
     ((princess_x + 1)..(knight_x - 1 )).each do |x_location|
       to_return << [x_location, self.height_of_column( x_location )]
-      to_return << [x_location, self.height_of_column( x_location ) + 1] if adjacent_column_one_higher?( x_location ) # this is the balancing case
+      to_return << [x_location, self.height_of_column( x_location + 1)] if x_location != 5 && self.height_of_column( x_location + 1) > self.height_of_column( x_location )
+      to_return << [x_location, self.height_of_column( x_location - 1)] if x_location != 0 && self.height_of_column( x_location - 1) > self.height_of_column( x_location )
       
     end
-    to_return
+    to_return.uniq
   end
   
   def place_piece( piece, position, x, y )
@@ -106,7 +107,7 @@ class Board
   
   private
 
-  def adjacent_column_one_higher?( x )
+  def adjacent_column_is_higher?( x )
     height_of_this_column = height_of_column( x )
     to_return = false
     if( x != 0 && height_of_column( x - 1 ) - 1 == height_of_this_column )

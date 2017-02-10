@@ -363,7 +363,7 @@ ed off of either   end unless @disabled
     expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
     expect( board.place_piece( red_piece, red_piece.positions.first, 3, 0 ) ).to eq( true )
 
-    correct_solution = [[1, 0], [1, 1], [2, 0], [3, 2]]
+    correct_solution = [[1, 0], [1, 1], [2, 0], [2, 2], [3, 2]]
     expect( board.locations_between_princess_and_knight ).to eq( correct_solution )
   end unless @disabled
 
@@ -582,6 +582,30 @@ ed off of either   end unless @disabled
     
     expect( board.princess_can_reach_knight? ).to eq( true )
     
+  end unless @disabled
+
+  it "should correctly locate all of the places you could place a piece for solution 46" do
+    board = Board.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 5, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 5, 2 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 0, 0 ) ).to eq( true )
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 1 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 3 ) ).to eq( true )
+
+    puts board.colored_string
+
+    expect( board.locations_between_princess_and_knight ).to eq( [[1, 0], [1, 2], [2, 0], [3, 0], [3, 2], [4, 2], [4, 4]] )
   end unless @disabled
   
   
