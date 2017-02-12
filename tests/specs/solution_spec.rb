@@ -169,7 +169,7 @@ describe Solution do
     expect( final_board ).not_to eq( nil )
   end unless @disabled
 
-  it "should be able to solve classic puzzle 47" do
+  it "should be able to solve classic puzzle 46" do
     board = Board.new
 
     orange_piece_one = OrangePiece.new
@@ -195,7 +195,7 @@ describe Solution do
     expect( final_board ).not_to eq( nil )
   end unless @disabled
 
-  it "should be able to solve classic puzzle 46" do
+  it "should be able to solve classic puzzle 45" do
     board = Board.new
 
     orange_piece_one = OrangePiece.new
@@ -220,4 +220,31 @@ describe Solution do
     final_board = solution.final_position_board
     expect( final_board ).not_to eq( nil )
   end unless @disabled
+
+  it "should be able to solve classic puzzle 44" do
+    board = Board.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 5, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 3, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 3, 1 ) ).to eq( true )
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 2 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 2 ) ).to eq( true )
+
+    solution = Solution.new( board, [PurplePiece.new, BluePiece.new, GreenPiece.new] )
+    
+    expect( solution.has_solution? ).to eq( true )
+    final_board = solution.final_position_board
+    expect( final_board ).not_to eq( nil )
+  end unless @disabled
+  
 end
