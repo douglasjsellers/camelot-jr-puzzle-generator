@@ -619,6 +619,21 @@ ed off of either   end unless @disabled
     expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 1, 2  ) ).to eq( false )
     
   end unless @disabled
+
+
+  it "should allowa green piece to be balanced with something on either end" do
+    board = Board.new
+
+    blue_piece_one = BluePiece.new
+    green_piece = GreenPiece.new
+    red_piece = RedPiece.new
+    
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, VERTICAL, [ 1, '\\' ] ), 4, 0 ) ).to eq( true )
+    expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 2, 2  ) ).to eq( true )
+    
+  end unless @disabled
   
   
 end 
