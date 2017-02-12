@@ -603,9 +603,21 @@ ed off of either   end unless @disabled
     expect( board.place_piece( princess, princess.positions.first, 0, 1 ) ).to eq( true )
     expect( board.place_piece( knight, knight.positions.first, 5, 3 ) ).to eq( true )
 
-    puts board.colored_string
-
     expect( board.locations_between_princess_and_knight ).to eq( [[1, 0], [1, 2], [2, 0], [3, 0], [3, 2], [4, 2], [4, 4]] )
+  end unless @disabled
+
+  it "should not be able to balance an upside down green piece on top of an upside down blue piece" do
+    board = Board.new
+
+    blue_piece_one = BluePiece.new
+    green_piece = GreenPiece.new
+    orange_piece_one = OrangePiece.new
+    
+
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 3, 0 ) ).to eq( true )
+    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ '-', 1 ] ), 2, 1 ) ).to eq( true )
+    expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 1, 2  ) ).to eq( false )
+    
   end unless @disabled
   
   
