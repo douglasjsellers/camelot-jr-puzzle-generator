@@ -19,7 +19,7 @@ class Solution
   
   private
   def compute_solution( current_board, current_pieces )
-    if( current_board.princess_can_reach_knight? )
+    if( current_board.princess_can_reach_knight? && current_pieces.empty? )
       return current_board
     else
       current_pieces.each do |current_piece|
