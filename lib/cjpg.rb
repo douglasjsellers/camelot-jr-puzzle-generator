@@ -4,6 +4,7 @@ require 'colorize'
 
 require 'core/board'
 require 'core/solution'
+require 'core/puzzle'
 require 'pieces/piece'
 require 'pieces/placed_piece'
 require 'pieces/position'
