@@ -4,6 +4,58 @@ HORIZONTAL = false
 
 describe Board do
   @disabled = false
+
+  it "should be able to find the placeable positions on a blank board" do
+    board = Board.new
+    placeable_positions = board.placeable_positions
+
+    expect( placeable_positions ).to eq( [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0]] )
+  end
+
+  it "should be able to find the placeable positions on a complex board" do
+    board = Board.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 4, 2 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 4, 3 ) ).to eq( true )
+
+    placeable_positions = board.placeable_positions
+    expect( placeable_positions ).to eq( [[0,2],[1,0],[2,0],[3,0],[4,4],[5,0]] )
+  end
+
+  it "should not return columns that contain princesses and knights" do
+    board = Board.new
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( knight, knight.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+
+    placeable_positions = board.placeable_positions
+    expect( placeable_positions ).to eq( [[1,0],[2,0],[3,0],[5,0]] )
+  end
+
+  it "should not return columns that are to tall" do
+    board = Board.new
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 0, 2 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 0, 4 ) ).to eq( true )
+
+    placeable_positions = board.placeable_positions
+    expect( placeable_positions ).to eq( [[1,0],[2,0],[3,0],[4,0],[5,0]] )
+  end
+  
   
   it "should be able to run the constructor" do
     board = Board.new

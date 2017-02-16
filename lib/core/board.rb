@@ -57,6 +57,19 @@ class Board
     end
     to_return.uniq
   end
+
+  def placeable_positions
+    to_return = []
+    
+    (0..5).each do |column|
+      column_height = height_of_column( column )
+      if( column_height < 5 && !column_contains_knight_or_princess?(column))
+        to_return << [column, column_height]
+      end
+    end
+
+    to_return
+  end
   
   def place_piece( piece, position, x, y )
     if( position.height > position.width )
@@ -133,6 +146,16 @@ class Board
     
   end
   
+  def column_contains_knight_or_princess?( column )
+    height = height_of_column( column )
+    if( height == 0 )
+      return false
+    else
+      return @raw_board_array[height - 1][column] == 'P' || @raw_board_array[height - 1][column] == 'K'
+    end
+    
+  end
+  
   def location_of_item( item )
     x = nil
     y = nil
@@ -146,7 +169,7 @@ class Board
     end
 
     return x,y
-    
+p    
   end
   
   def can_place_horizontal_piece?( piece, position, x, y )
