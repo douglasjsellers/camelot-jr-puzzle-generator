@@ -6,5 +6,10 @@ describe Puzzle do
 
     expect( puzzle.valid_boards.size).to eq( 2 )
   end
+
+  it "should be able to solve all boards" do
+    Puzzle.find_all_boards
+  end
+  
   
 end

@@ -8,6 +8,41 @@ class Puzzle
     compute_valid_boards
   end
 
+  def self.find_all_boards
+    puzzle_piece_combinations = [
+      [OrangePiece.new],
+      [OrangePiece.new, OrangePiece.new],
+      [OrangePiece.new, OrangePiece.new, RedPiece.new],
+      [OrangePiece.new, OrangePiece.new, RedPiece.new, RedPiece.new],
+      [OrangePiece.new, RedPiece.new, RedPiece.new],
+      [RedPiece.new, RedPiece.new],
+      [OrangePiece.new, RedPiece.new]
+    ]
+
+    solving_piece_combinations = [
+      [PurplePiece.new],
+      [PurplePiece.new, BluePiece.new],
+      [PurplePiece.new, BluePiece.new, BluePiece.new],
+      [PurplePiece.new, BluePiece.new, BluePiece.new, GreenPiece.new],
+      [PurplePiece.new, BluePiece.new, GreenPiece.new],
+      [PurplePiece.new, GreenPiece.new],
+      [BluePiece.new, BluePiece.new, GreenPiece.new],      
+      [BluePiece.new, GreenPiece.new],
+      [BluePiece.new, BluePiece.new],
+      [GreenPiece.new]
+    ]
+
+    puzzle_piece_combinations.each do |puzzle_piece_combination|
+      solving_piece_combinations.each do |solving_piece_combination|
+        puzzle = Puzzle.new( puzzle_piece_combination,solving_piece_combination )
+        puzzle.valid_boards.each do |valid_board|
+          puts ""
+          puts valid_board.colored_string
+        end
+      end
+    end
+  end
+  
   private
   def add_next_piece_to_board( board, used_pieces, unused_pieces )
     if( unused_pieces.empty? )
