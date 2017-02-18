@@ -1,6 +1,7 @@
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__))
 require 'rubygems'
 require 'colorize'
+require 'mini_magick'
 
 require 'core/board'
 require 'core/solution'
