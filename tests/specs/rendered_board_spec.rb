@@ -3,6 +3,20 @@ require_relative '../spec_helper'
 describe RenderedBoard do
   @disabled = true
 
+  it "should be able to stack a orange on top of a red" do
+    board = Board.new
+    red_piece = RedPiece.new
+    orange_piece = OrangePiece.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece, orange_piece.positions.first, 0, 2 ) ).to eq( true )
+
+    rendered_board = RenderedBoard.new( board )
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+    
+  end
+  
   it "should be able to generate a rendered file with all red pieces" do
     board = Board.new
 
@@ -19,7 +33,7 @@ describe RenderedBoard do
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
     
-  end
+  end unless @disabled
   
   it "should be able to generate a rendered file with a knight and a princess on it" do
     board = Board.new

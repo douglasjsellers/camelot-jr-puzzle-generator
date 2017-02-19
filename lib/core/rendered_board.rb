@@ -1,6 +1,7 @@
 class RenderedBoard
   def initialize( board )
     @board = board
+    @column_height = [1270, 1270, 1270, 1270, 1270, 1270]
   end
 
   def rendered_file( location )
@@ -20,7 +21,8 @@ class RenderedBoard
       piece_image = MiniMagick::Image.open(image_name)
       image = image.composite( piece_image ) do |c|
         c.compose "Over"
-        c.geometry( "+#{125+(placed_piece.x * 194 )}+#{1270-piece_image.height}" )
+        @column_height[placed_piece.x] = @column_height[placed_piece.x] - piece_image.height
+        c.geometry( "+#{125+(placed_piece.x * 194 )}+#{@column_height[placed_piece.x]}" )
       end
     end
     image.format( 'png' )
