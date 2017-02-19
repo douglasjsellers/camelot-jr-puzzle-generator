@@ -28,11 +28,10 @@ describe RenderedBoard do
     expect( solution.has_solution? ).to eq( true )
     final_board = solution.final_position_board
 
-    puts final_board.colored_string
     rendered_board = RenderedBoard.new( final_board )
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
-  end
+  end unless @disabled
   
   it "should correctly render something with all of the pieces on it" do
     board = Board.new
