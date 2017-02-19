@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
 describe RenderedBoard do
-  @disabled = false
+  @disabled = true
 
   it "should be able to generate a rendered file with a knight and a princess on it" do
     board = Board.new
@@ -11,7 +11,7 @@ describe RenderedBoard do
     expect( board.place_piece( knight, knight.positions.first, 4, 0 ) ).to eq( true )
     expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
 
-    rendered_board = Board.new( board )
+    rendered_board = RenderedBoard.new( board )
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
     

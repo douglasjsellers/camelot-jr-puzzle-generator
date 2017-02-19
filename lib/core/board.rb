@@ -1,4 +1,6 @@
 class Board
+  attr_reader :positions
+  
   def initialize
     @raw_board_array = [[0,0,0,0,0,0],
                         [0,0,0,0,0,0],                        
@@ -11,7 +13,7 @@ class Board
                             ["0","0","0","0","0","0"],
                             ["0","0","0","0","0","0"],
                             ["0","0","0","0","0","0"]]
-    @pieces = []
+    @positions = []
   end
 
   def clone
@@ -244,7 +246,7 @@ p
         @raw_board_array[y + adder ][x] = position.layout[adder]
         @colored_board_array[y + adder ][x] = position.layout[adder].to_s.colorize( piece.color )
       end
-      @pieces << piece
+      @positions << position
       return true
     else
       return false
@@ -257,7 +259,7 @@ p
         @raw_board_array[y][x + adder] = position.layout[adder]
         @colored_board_array[y][x + adder] = position.layout[adder].to_s.colorize( piece.color )
       end
-      @pieces << piece
+      @positions << position
       return true
     else
       return false
