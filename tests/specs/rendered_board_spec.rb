@@ -5,7 +5,7 @@ HORIZONTAL = false
 describe RenderedBoard do
   @disabled = true
 
-  it "should correctly mirror an image" do
+  it "should correctly mirror and rotate an image" do
     board = Board.new
 
     blue_piece = BluePiece.new
@@ -14,18 +14,8 @@ describe RenderedBoard do
     rendered_board = RenderedBoard.new( board )
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
-  end
-
-  it "should correctly rotate an image" do
-    board = Board.new
-
-    blue_piece = BluePiece.new
-    expect( board.place_piece( blue_piece, Position.new( blue_piece, VERTICAL, [1, '/'] ), 1, 0  ) ).to eq( true )
-
-    rendered_board = RenderedBoard.new( board )
-    file = rendered_board.rendered_file( 'result.png' ) 
-    expect( file ).not_to eq( nil )
   end unless @disabled
+
   
   it "should be able to stack a orange on top of a red" do
     board = Board.new
