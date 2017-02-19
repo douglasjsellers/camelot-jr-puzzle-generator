@@ -195,9 +195,7 @@ describe Board do
   end unless @disabled
 
 
-  it "should not allow pieces to be ext  end unless @disabled
-ed off of either   end unless @disabled
-" do
+  it "should not allow pieces to hang off the edge" do
     board = Board.new
     green_piece = GreenPiece.new
     board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['\\', 1, 1] ), 5, 0  ).should == false

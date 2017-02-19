@@ -1,8 +1,32 @@
 require_relative '../spec_helper'
+VERTICAL = true
+HORIZONTAL = false
 
 describe RenderedBoard do
   @disabled = true
 
+  it "should correctly mirror an image" do
+    board = Board.new
+
+    blue_piece = BluePiece.new
+    expect( board.place_piece( blue_piece, Position.new( blue_piece, HORIZONTAL, [1, '/'], true, 180 ), 1, 0  ) ).to eq( true )
+
+    rendered_board = RenderedBoard.new( board )
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+  end
+
+  it "should correctly rotate an image" do
+    board = Board.new
+
+    blue_piece = BluePiece.new
+    expect( board.place_piece( blue_piece, Position.new( blue_piece, VERTICAL, [1, '/'] ), 1, 0  ) ).to eq( true )
+
+    rendered_board = RenderedBoard.new( board )
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+  end unless @disabled
+  
   it "should be able to stack a orange on top of a red" do
     board = Board.new
     red_piece = RedPiece.new
@@ -15,7 +39,7 @@ describe RenderedBoard do
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
     
-  end
+  end unless @disabled
   
   it "should be able to generate a rendered file with all red pieces" do
     board = Board.new

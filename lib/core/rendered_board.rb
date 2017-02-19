@@ -19,6 +19,8 @@ class RenderedBoard
     @board.placed_pieces.each do |placed_piece|
       image_name = map_piece_to_image_name( placed_piece.piece )
       piece_image = MiniMagick::Image.open(image_name)
+      piece_image.flip if placed_piece.position.mirror
+      piece_image.rotate placed_piece.position.rotation.to_s if placed_piece.position != 0
       image = image.composite( piece_image ) do |c|
         c.compose "Over"
         @column_height[placed_piece.x] = @column_height[placed_piece.x] - piece_image.height

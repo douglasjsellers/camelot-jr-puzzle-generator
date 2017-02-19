@@ -11,13 +11,13 @@ class Piece
     self
   end
   
-  def add_horizontial_position( layout )
-    @positions << Position.new( self, @horizontal, layout )
+  def add_horizontial_position( layout, mirror = false )
+    @positions << Position.new( self, @horizontal, layout, mirror )
     self
   end
 
-  def add_vertical_position( layout )
-    @positions << Position.new( self, @vertical, layout )
+  def add_vertical_position( layout, mirror = false )
+    @positions << Position.new( self, @vertical, layout, mirror )
     self
   end
 

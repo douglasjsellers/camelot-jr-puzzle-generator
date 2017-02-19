@@ -2,12 +2,12 @@ class BluePiece < Piece
   def initialize
     super
     add_vertical_position( [ 1, '/' ] )
-    add_vertical_position( [ 1, '\\' ] )
+    add_vertical_position( [ 1, '\\' ], true )
     
     add_horizontial_position( [ 1, '-' ] )
     add_horizontial_position( [ '-', 1] )
     
-    add_horizontial_position( [ 1, '\\'] )
+    add_horizontial_position( [ 1, '\\'], true )
     add_horizontial_position( [ '/', 1 ] )
   end
 
