@@ -15,15 +15,14 @@ class RenderedBoard
   
   def render( location )
     image = MiniMagick::Image.open("images/blank_challenge.png")
-    @board.positions.each do |position|
-      image_name = map_piece_to_image_name( position.piece )
+    @board.placed_pieces.each do |placed_piece|
+      image_name = map_piece_to_image_name( placed_piece.piece )
       piece_image = MiniMagick::Image.open(image_name)
       image = image.composite( piece_image ) do |c|
         c.compose "Over"
-        c.geometry( "+125+#{1270-piece_image.height}" )
+        c.geometry( "+#{125+(placed_piece.x * 200 )}+#{1270-piece_image.height}" )
       end
     end
-    
     image.format( 'png' )
     image.write( location  )
     return location
