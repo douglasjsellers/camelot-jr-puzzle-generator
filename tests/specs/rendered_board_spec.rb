@@ -31,7 +31,7 @@ describe RenderedBoard do
     rendered_board = RenderedBoard.new( final_board )
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
-  end unless @disabled
+  end 
   
   it "should correctly render something with all of the pieces on it" do
     board = Board.new
