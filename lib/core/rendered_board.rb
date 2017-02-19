@@ -20,7 +20,7 @@ class RenderedBoard
       piece_image = MiniMagick::Image.open(image_name)
       image = image.composite( piece_image ) do |c|
         c.compose "Over"
-        c.geometry( "+#{125+(placed_piece.x * 200 )}+#{1270-piece_image.height}" )
+        c.geometry( "+#{125+(placed_piece.x * 194 )}+#{1270-piece_image.height}" )
       end
     end
     image.format( 'png' )
