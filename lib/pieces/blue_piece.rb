@@ -1,8 +1,8 @@
 class BluePiece < Piece
   def initialize
     super
-    add_vertical_position( [ 1, '/' ], 90 )
-    add_vertical_position( [ 1, '\\' ], true, 90 )
+    add_vertical_position( [ 1, '/' ], true, -90 )
+    add_vertical_position( [ 1, '\\' ], false, 90 )
     
     add_horizontial_position( [ 1, '-' ], false, 180 )
     add_horizontial_position( [ '-', 1], true )
