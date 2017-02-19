@@ -5,6 +5,35 @@ HORIZONTAL = false
 describe RenderedBoard do
   @disabled = true
 
+  it "should correctly render a solution" do
+    board = Board.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 5, 0 ) ).to eq( true )    
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 3, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 5, 2 ) ).to eq( true )
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 0 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 5, 3 ) ).to eq( true )
+
+    solution = Solution.new( board, [GreenPiece.new, PurplePiece.new, BluePiece.new, BluePiece.new] )
+    
+    expect( solution.has_solution? ).to eq( true )
+    final_board = solution.final_position_board
+
+    puts final_board.colored_string
+    rendered_board = RenderedBoard.new( final_board )
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+  end
+  
   it "should correctly render something with all of the pieces on it" do
     board = Board.new
 
