@@ -5,6 +5,23 @@ HORIZONTAL = false
 describe RenderedBoard do
   @disabled = true
 
+  it "should render three puzzle pieces at the top" do
+    board = Board.new
+    rendered_board = RenderedBoard.new( board, [PurplePiece.new, GreenPiece.new, BluePiece.new] )
+
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+  end unless @disabled
+  
+
+  it "should render two puzzle pieces at the top" do
+    board = Board.new
+    rendered_board = RenderedBoard.new( board, [PurplePiece.new, BluePiece.new] )
+
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+  end unless @disabled
+  
   it "should render all of the green positions correctly" do
     board = Board.new
     green_piece = GreenPiece.new
