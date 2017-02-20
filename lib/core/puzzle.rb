@@ -1,11 +1,11 @@
 class Puzzle
-  attr_reader :valid_boards
+  attr_reader :valid_solutions
   def initialize( puzzle_pieces, solving_pieces )
     @puzzle_pieces = puzzle_pieces + [Knight.new, Princess.new]
     @solving_pieces = solving_pieces
-    @valid_boards = []
+    @valid_solutions = []
 
-    compute_valid_boards
+    compute_valid_solutions
   end
 
   def self.find_all_boards
@@ -35,7 +35,7 @@ class Puzzle
     puzzle_piece_combinations.each do |puzzle_piece_combination|
       solving_piece_combinations.each do |solving_piece_combination|
         puzzle = Puzzle.new( puzzle_piece_combination,solving_piece_combination )
-        puzzle.valid_boards.each do |valid_board|
+        puzzle.valid_solutions.each do |valid_board|
           puts ""
           puts valid_board.colored_string
         end
@@ -47,7 +47,7 @@ class Puzzle
   def add_next_piece_to_board( board, used_pieces, unused_pieces )
     if( unused_pieces.empty? )
       solution = Solution.new( board, @solving_pieces )
-      @valid_boards << board if solution.has_solution?
+      @valid_solutions << solution if solution.has_solution?
     else
       piece = unused_pieces.first
       valid_positions = board.placeable_positions
@@ -61,7 +61,7 @@ class Puzzle
     
   end
   
-  def compute_valid_boards
+  def compute_valid_solutions
     add_next_piece_to_board( Board.new, [], @puzzle_pieces )
   end
   

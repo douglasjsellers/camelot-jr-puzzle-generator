@@ -1,5 +1,6 @@
 class Solution
 
+  attr_reader :board, :playable_pieces, :solution
   
   def initialize( board, playable_pieces )
     @enable_debug = false
