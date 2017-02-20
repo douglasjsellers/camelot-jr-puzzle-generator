@@ -5,6 +5,39 @@ HORIZONTAL = false
 describe RenderedBoard do
   @disabled = true
 
+  it "should render all of the green positions correctly" do
+    board = Board.new
+    green_piece = GreenPiece.new
+
+    expect( board.place_piece( green_piece, green_piece.positions[0],0, 0 ) ).to eq( true )
+    expect( board.place_piece( green_piece, green_piece.positions[5],3, 0 ) ).to eq( true )
+    expect( board.place_piece( green_piece, green_piece.positions[1],0, 1 ) ).to eq( true )
+    expect( board.place_piece( green_piece, green_piece.positions[4],3, 1 ) ).to eq( true )
+    expect( board.place_piece( green_piece, green_piece.positions[2],1, 2 ) ).to eq( true )
+    expect( board.place_piece( green_piece, green_piece.positions[3],2, 2 ) ).to eq( true )
+
+    puts board.colored_string
+    rendered_board = RenderedBoard.new( board )
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+    
+  end unless @disabled
+  
+  it "should render all of the blue positions correctly" do
+    board = Board.new
+    blue_piece = BluePiece.new
+    (0..2).each do |i|
+      expect( board.place_piece( blue_piece, blue_piece.positions[i],i, 0 ) ).to eq( true )
+    end
+    expect( board.place_piece( blue_piece, blue_piece.positions[3],4, 0 ) ).to eq( true )
+    expect( board.place_piece( blue_piece, blue_piece.positions[4],2, 1 ) ).to eq( true )
+    expect( board.place_piece( blue_piece, blue_piece.positions[5],4, 1 ) ).to eq( true )
+
+    rendered_board = RenderedBoard.new( board )
+    file = rendered_board.rendered_file( 'result.png' ) 
+    expect( file ).not_to eq( nil )
+  end unless @disabled
+  
   it "should correctly render a vertically rotated blue" do
     board = Board.new
 

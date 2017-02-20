@@ -3,8 +3,8 @@ class GreenPiece < Piece
     super
     add_horizontial_position( [ '/', 1, 1 ] )
     add_horizontial_position( [ '-', 1, 1 ], true )
-    add_vertical_position( [ 1, 1, '\\' ], true, 90 )
-    add_vertical_position( [ 1, 1, '/' ], false, 90 )
+    add_vertical_position( [ 1, 1, '\\' ], false, 90 )
+    add_vertical_position( [ 1, 1, '/' ], true, -90 )
     add_horizontial_position( [ 1, 1, '\\' ], true, 180 )        
     add_horizontial_position( [ 1, 1, '-' ], false, 180 )
     
