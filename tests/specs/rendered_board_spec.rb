@@ -16,7 +16,6 @@ describe RenderedBoard do
     expect( board.place_piece( green_piece, green_piece.positions[2],1, 2 ) ).to eq( true )
     expect( board.place_piece( green_piece, green_piece.positions[3],2, 2 ) ).to eq( true )
 
-    puts board.colored_string
     rendered_board = RenderedBoard.new( board )
     file = rendered_board.rendered_file( 'result.png' ) 
     expect( file ).not_to eq( nil )
