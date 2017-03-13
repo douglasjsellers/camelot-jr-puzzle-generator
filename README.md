@@ -22,5 +22,8 @@ Basic usage is as follows:
 
 Good examples of the usage can be seen in bin/scenario_*.rb.
 
+## Samples
 
+Puzzle
+![Puzzle](/solutions/final_list/_puzzle_1733.scenario4.png?raw=true "Puzzle")
 
