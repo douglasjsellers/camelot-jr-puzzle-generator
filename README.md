@@ -30,3 +30,7 @@ Puzzle
 Solution
 ![Solution](/solutions/final_list/solution_1733.scenario4.png?raw=true "Solution")
 
+## Tests
+Good test coverage can be found in the specs under the tests directory
+
+```bundle exec rake tests```
