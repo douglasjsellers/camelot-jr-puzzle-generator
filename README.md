@@ -27,3 +27,6 @@ Good examples of the usage can be seen in bin/scenario_*.rb.
 Puzzle
 ![Puzzle](/solutions/final_list/_puzzle_1733.scenario4.png?raw=true "Puzzle")
 
+Solution
+![Solution](/solutions/final_list/solution_1733.scenario4.png?raw=true "Solution")
+
