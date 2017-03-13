@@ -12,7 +12,7 @@ Basic usage is as follows:
 ```
   puzzle = Puzzle.new( [OrangePiece.new], [PurplePiece.new, BluePiece.new, BluePiece.new] )
   puzzle.valid_solutions.each do |valid_solution|
-    rendered_starting_position = RenderedBoard.new( valid_solution.board, solving_piece_combination )
+    rendered_starting_position = RenderedBoard.new( valid_solution.board, [PurplePiece.new, BluePiece.new, BluePiece.new] )
     rendered_solution_position = RenderedBoard.new( valid_solution.solution )
 
     rendered_starting_position.rendered_file( "puzzle.png" )
