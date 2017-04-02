@@ -684,6 +684,25 @@ describe Board do
     expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, ['/', 1, 1] ), 2, 2  ) ).to eq( true )
     
   end unless @disabled
+
+  it "should not allow puzzle 18s solution to be balanced" do
+    board = Board.new
+    red_piece_one = RedPiece.new
+    red_piece_two = RedPiece.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+
+    blue_piece_one = BluePiece.new
+    blue_piece_two = BluePiece.new
+
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 0, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_one, red_piece_one.positions.first, 0, 1 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 2, 0 ) ).to eq( true )    
+    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ 1, '\\' ] ), 2, 1 ) ).to eq( true )    
+    expect( board.place_piece( blue_piece_two, Position.new( blue_piece_two, HORIZONTAL, [ '//', 1 ] ), 1, 2 ) ).to eq( false )    
+    
+  end
   
   
 end 
