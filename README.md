@@ -37,4 +37,4 @@ Solution
 ## Tests
 Good test coverage can be found in the specs under the tests directory
 
-```bundle exec rake tests```
+```bundle exec rake test```
