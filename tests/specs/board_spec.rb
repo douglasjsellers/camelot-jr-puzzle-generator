@@ -10,7 +10,7 @@ describe Board do
     placeable_positions = board.placeable_positions
 
     expect( placeable_positions ).to eq( [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0]] )
-  end
+  end unless @disabled
 
   it "should be able to find the placeable positions on a complex board" do
     board = Board.new
@@ -27,7 +27,7 @@ describe Board do
 
     placeable_positions = board.placeable_positions
     expect( placeable_positions ).to eq( [[0,2],[1,0],[2,0],[3,0],[4,4],[5,0]] )
-  end
+  end unless @disabled
 
   it "should not return columns that contain princesses and knights" do
     board = Board.new
@@ -39,7 +39,7 @@ describe Board do
 
     placeable_positions = board.placeable_positions
     expect( placeable_positions ).to eq( [[1,0],[2,0],[3,0],[5,0]] )
-  end
+  end unless @disabled
 
   it "should not return columns that are to tall" do
     board = Board.new
@@ -54,7 +54,7 @@ describe Board do
 
     placeable_positions = board.placeable_positions
     expect( placeable_positions ).to eq( [[1,0],[2,0],[3,0],[4,0],[5,0]] )
-  end
+  end unless @disabled
   
   
   it "should be able to run the constructor" do
@@ -696,12 +696,14 @@ describe Board do
     blue_piece_one = BluePiece.new
     blue_piece_two = BluePiece.new
 
+    
     expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 0, 0 ) ).to eq( true )    
     expect( board.place_piece( red_piece_one, red_piece_one.positions.first, 0, 1 ) ).to eq( true )
-    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 2, 0 ) ).to eq( true )    
-    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ 1, '\\' ] ), 2, 1 ) ).to eq( true )    
-    expect( board.place_piece( blue_piece_two, Position.new( blue_piece_two, HORIZONTAL, [ '//', 1 ] ), 1, 2 ) ).to eq( false )    
-    
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 3, 0 ) ).to eq( true )
+    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ '-', 1 ] ), 1, 1 ) ).to eq( true )
+    expect( board.place_piece( blue_piece_two, Position.new( blue_piece_two, HORIZONTAL, [ 1, '\\' ] ), 1, 2 ) ).to eq( false )    
+    puts board.colored_string        
   end
   
   
