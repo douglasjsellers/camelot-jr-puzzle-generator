@@ -60,6 +60,22 @@ class Board
     to_return.uniq
   end
 
+  def piece_present_at?( x , y )
+    !piece_located_at( x, y).nil?
+  end
+  
+  def piece_located_at( x, y )
+    @placed_pieces.each do |placed_piece|
+      position = placed_piece.position
+      if( position.vertical )
+        return placed_piece if( placed_piece.x == x && placed_piece.y <= y && ((placed_piece.y + position.height) > y ) )
+      else
+        return placed_piece if( placed_piece.y == y && placed_piece.x <= x && ( ( ( placed_piece.x + position.width ) - x ) >= 0 ) )
+      end
+    end
+    nil
+  end
+  
   def placeable_positions
     to_return = []
     
@@ -112,6 +128,7 @@ class Board
     location_of_item( 'P' )
   end
 
+  
   def colored_string
     build_string( @colored_board_array )
   end
@@ -170,8 +187,7 @@ class Board
       end
     end
 
-    return x,y
-p    
+    return x,y    
   end
   
   def can_place_horizontal_piece?( piece, position, x, y )
@@ -210,7 +226,7 @@ p
     offset = find_offset_closest_to_stair( piece, position )
     # make sure there is something solid under the position closest to the stair
     if( offset == 0 )
-      return piece_below_location_is_solid?( x, y, piece.size ) || piece_on_both_ends?( x, y, piece.size )
+      return piece_below_location_is_solid?( x, y, piece.size ) #|| piece_on_both_ends?( x, y, piece.size )
     else
       return piece_below_location_is_solid?( x + offset, y, piece.size ) || piece_on_both_ends?( x, y, piece.size )
     end
@@ -278,10 +294,12 @@ p
   
   def piece_below_location_is_solid?( x, y, length )
     if( y > 0 )
-      return @raw_board_array[ y - 1][x] == 1 || ( @raw_board_array[ y - 1][x] == '-' && length < 3 )
+        return @raw_board_array[ y - 1][x] == 1  || ( piece_present_at?( x, y - 1 ) && @raw_board_array[ y - 1][x] == '-' && length < 3  && piece_located_at( x , y - 1).length == 3 )
     else
       return true
     end
   end
+
+  
   
 end

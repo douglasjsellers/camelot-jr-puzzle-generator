@@ -569,6 +569,44 @@ describe Board do
     
   end unless @disabled
 
+  it "should be able to find a piece located at any location" do
+    board = Board.new
+
+    orange_piece_one = OrangePiece.new
+    orange_piece_two = OrangePiece.new
+    red_piece = RedPiece.new
+    red_piece_two = RedPiece.new
+
+    purple_piece = PurplePiece.new
+    blue_piece_one = BluePiece.new
+    blue_piece_two = BluePiece.new
+    green_piece = GreenPiece.new
+    
+    knight = Knight.new
+    princess = Princess.new
+
+    expect( board.place_piece( red_piece, red_piece.positions.first, 0, 0 ) ).to eq( true )    
+    expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 4, 0 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 4, 2 ) ).to eq( true )
+    expect( board.place_piece( orange_piece_one, orange_piece_one.positions.first, 4, 3 ) ).to eq( true )
+    
+    expect( board.place_piece( princess, princess.positions.first, 0, 2 ) ).to eq( true )
+    expect( board.place_piece( knight, knight.positions.first, 4, 4 ) ).to eq( true )
+
+    expect( board.place_piece( purple_piece, purple_piece.positions.first, 2, 0 ) ).to eq( true )
+    expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, [1, 1, '-'] ), 1, 1  ) ).to eq( true )
+    expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ '/', 1 ] ), 1, 2 ) ).to eq( true )
+
+    expect( board.piece_located_at( 3, 1 ).piece ).to eq( green_piece )
+    expect( board.piece_located_at( 2, 1 ).piece ).to eq( green_piece )    
+    expect( board.piece_located_at( 1, 1 ).piece ).to eq( green_piece )
+
+    expect( board.piece_located_at( 0, 1 ).piece ).to eq( red_piece )
+    
+    expect( board.piece_present_at?( 1, 1) ).to eq( true )
+
+  end unless @disabled
+  
   it "should correctly determine that the princess can reach the knight for the solution on puzzle 47" do
 
     board = Board.new
@@ -597,10 +635,12 @@ describe Board do
     expect( board.place_piece( purple_piece, purple_piece.positions.first, 2, 0 ) ).to eq( true )
     expect( board.place_piece( green_piece, Position.new( green_piece, HORIZONTAL, [1, 1, '-'] ), 1, 1  ) ).to eq( true )
     expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ '/', 1 ] ), 1, 2 ) ).to eq( true )
+    
     expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, VERTICAL, [ 1, '/' ] ), 3, 2  ) ).to eq( true )
 
     expect( board.princess_can_reach_knight? ).to eq( true )
-  end unless @disabled
+    
+  end 
 
   it "should correctly determine that the princess can reach the knight for the solution on puzzle 46" do
     board = Board.new
@@ -702,9 +742,9 @@ describe Board do
     expect( board.place_piece( orange_piece_two, orange_piece_two.positions.first, 2, 0 ) ).to eq( true )
     expect( board.place_piece( red_piece_two, red_piece_two.positions.first, 3, 0 ) ).to eq( true )
     expect( board.place_piece( blue_piece_one, Position.new( blue_piece_one, HORIZONTAL, [ '-', 1 ] ), 1, 1 ) ).to eq( true )
-    expect( board.place_piece( blue_piece_two, Position.new( blue_piece_two, HORIZONTAL, [ 1, '\\' ] ), 1, 2 ) ).to eq( false )    
-    puts board.colored_string        
-  end
+    expect( board.place_piece( blue_piece_two, Position.new( blue_piece_two, HORIZONTAL, [ 1, '\\' ] ), 1, 2 ) ).to eq( false )
+    
+  end unless @disabled
   
   
 end 
